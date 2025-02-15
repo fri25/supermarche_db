@@ -61,9 +61,8 @@ include "config.php";
         } else {
             try {
                   
-            $requete =$pdo->prepare("INSERT INTO `produits`( `nom`, `prix`, `stock`) VALUES (':nom',':prix',':stock')");
+            $requete =$pdo->prepare("INSERT INTO `produits`( `nom`, `prix`, `stock`) VALUES ('$nom','$prix','$stock')");
             $requete->execute();
-            header("location:index.php");
              
             } catch (PDOException $e) {
                 $error = "Une erreur est survenue : " . $e->getMessage();
@@ -71,6 +70,7 @@ include "config.php";
 
                 if ($requete) {
                     echo "<div class='alert alert-success mt-3'>Produit ajouté avec succès.</div>";
+                    header("location:index.php");
 
                     } 
                 }
